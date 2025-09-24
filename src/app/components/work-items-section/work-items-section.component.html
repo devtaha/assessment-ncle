@@ -1,0 +1,74 @@
+<section class="mt-6">
+  <!-- Toggle bar -->
+  <div class="flex items-center justify-between rounded-[16px] bg-yellow-50/60 border border-[#F6E9B8] p-1">
+    <button type="button" class="flex-1" (click)="setTab('all')">
+      <div
+        [class]="'rounded-[16px] px-6 py-2 text-center font-extrabold ' + (activeTab==='all' ? 'bg-[#FED143] text-gray-900' : 'text-gray-800')">
+        All</div>
+    </button>
+    <button type="button" class="flex-1" (click)="setTab('todo')">
+      <div
+        [class]="'rounded-[16px] px-6 py-2 text-center font-extrabold flex items-center justify-center gap-2 ' + (activeTab==='todo' ? 'bg-[#FED143] text-gray-900' : 'text-gray-800')">
+        <span>Todo</span>
+        <span *ngIf="todoCount>0"
+          class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500 text-white text-[11px]">{{
+          todoCount }}</span>
+      </div>
+    </button>
+  </div>
+
+  <!-- Filter chips -->
+  <div class="mt-4 flex flex-wrap gap-2">
+    <button *ngFor="let chip of chips; trackBy: trackByChip" type="button"
+      (click)="selectChip(chip)"
+      [class]="'px-4 py-2 rounded-full border shadow-sm text-sm font-semibold ' + (selectedChip() === chip ? 'bg-[#FED143] border-[#FED143] text-gray-900' : 'bg-white border-gray-200 text-gray-700')">{{
+      chip }}</button>
+  </div>
+
+  <!-- Work Items Grid -->
+  <div class="mt-4" *ngIf="selectedChip() === 'Exams'">
+    <!-- Show grid when there are exams -->
+    <div class="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-10 gap-2" *ngIf="filteredItems().length > 0">
+      <!-- Add New Exam Card -->
+      <div class="flex flex-col items-center justify-center cursor-pointer min-h-[120px]"
+        (click)="add.emit()">
+        <div class="relative w-20 h-20 mb-2">
+          <!-- Outer border -->
+          <div class="absolute inset-0 rounded-[24px] border-4 border-primary p-1">
+            <!-- Inner rounded square with background -->
+            <div class="w-full h-full rounded-[20px] bg-primary flex items-center justify-center hover:bg-primary-hover transition-all">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <span class="text-sm font-semibold text-gray-900">Add more</span>
+      </div>
+
+      <!-- Exam Cards -->
+      <div *ngFor="let item of filteredItems(); trackBy: trackByItemId"
+        class="flex flex-col items-center justify-center cursor-pointer min-h-[120px]"
+        (click)="onExamClick(item.id)">
+        <div class="relative w-20 h-20 mb-2">
+          <!-- Outer border -->
+          <div class="absolute inset-0 rounded-[24px] border-4 border-gray-300 p-1">
+            <!-- Inner rounded square with background -->
+            <div class="w-full h-full rounded-[20px] bg-gray-200 flex items-center justify-center p-2">
+              <img src="assets/icons/all topics/exams.png" alt="Exam" class="w-full h-full object-contain">
+            </div>
+          </div>
+        </div>
+        <span class="text-sm font-semibold text-gray-900">{{ item.title }}</span>
+      </div>
+    </div>
+
+    <!-- Show empty state when no exams -->
+    <app-work-empty-state *ngIf="filteredItems().length === 0" (action)="add.emit()"></app-work-empty-state>
+  </div>
+
+  <!-- Other content types (Videos, Attachments, Assignments) -->
+  <div class="mt-4" *ngIf="selectedChip() !== 'Exams'">
+    <app-work-empty-state (action)="add.emit()"></app-work-empty-state>
+  </div>
+</section>

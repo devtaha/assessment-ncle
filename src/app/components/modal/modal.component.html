@@ -1,0 +1,17 @@
+<div *ngIf="open" id="app-modal-overlay" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-[1px] flex items-center justify-center p-4" (click)="onOverlayClick($event)">
+  <div class="relative w-full max-w-3xl max-h-[90vh] rounded-3xl bg-white shadow-2xl flex flex-col">
+    <div class="flex items-center justify-between px-6 py-5 flex-shrink-0">
+      <h2 class="text-2xl font-extrabold text-gray-900">{{ title }}</h2>
+      <button type="button" aria-label="Close" class="inline-flex h-9 w-9 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2" (click)="close.emit()">
+        <span class="sr-only">Close</span>
+        <img src="assets/icons/cross-btn.png" alt="Close" class="h-9 w-9 rounded-full"/>
+      </button>
+    </div>
+
+    <div class="px-6 pb-6 overflow-y-auto flex-1">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
+
+

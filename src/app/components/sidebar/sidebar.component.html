@@ -1,0 +1,19 @@
+<aside class="fixed left-0 top-0 h-full w-64 bg-gray-50 border-r border-gray-200 shadow-sm hidden md:block">
+  <nav class="p-4">
+    <ul class="space-y-2">
+      <li *ngFor="let item of sidebarItems; trackBy: trackByRoute">
+        <a
+          [routerLink]="item.route"
+          class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 transition-colors border-2 border-transparent"
+          [class.hover:bg-gray-100]="!rla.isActive"
+          routerLinkActive="bg-secondary text-black font-medium !border-tertiary border-2 shadow-sm"
+          [routerLinkActiveOptions]="{exact: false}"
+          #rla="routerLinkActive">
+          <img *ngIf="item.iconType === 'file'" [src]="item.icon" [alt]="item.label" class="w-5 h-5">
+          <span *ngIf="item.iconType === 'emoji'" class="text-lg">{{ item.icon }}</span>
+          <span class="text-sm">{{ item.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>

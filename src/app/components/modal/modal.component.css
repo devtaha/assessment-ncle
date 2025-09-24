@@ -1,0 +1,10 @@
+/* Basic modal transitions */
+.fade-enter {
+  opacity: 0.001;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 150ms ease-in-out;
+}
+
+

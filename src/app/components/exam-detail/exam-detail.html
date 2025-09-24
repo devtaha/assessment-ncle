@@ -1,0 +1,91 @@
+<app-main-header title="Exam Details" [breadcrumbs]="[
+    { label: 'Course', route: ['/course'] },
+    { label: 'Course Details', route: ['/course'] },
+    { label: 'Exam Details' }
+  ]">
+  <button type="button" class="inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 focus:outline-none">
+    <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
+    </svg>
+  </button>
+</app-main-header>
+
+<!-- Background Container with Gradient and Image -->
+<div class="relative min-h-screen overflow-hidden"
+     style="background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 50%, #1E40AF 100%); background-image: url('assets/blue curvy bg.png'); background-size: cover; background-position: center; background-blend-mode: overlay;">
+
+  <div class="relative max-w-4xl mx-auto px-6 py-8">
+    <!-- Exam Header Card -->
+    <div class="rounded-3xl p-8 text-white shadow-lg mb-8" style="background-color: #4299F7;">
+      <div class="flex items-start justify-center gap-3 mb-6">
+        <span class="bg-white text-blue-600 px-4 py-2 rounded-full text-sm font-semibold">
+          Attempt 1/3
+        </span>
+        <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full">
+          <img src="assets/icons/all topics/exams.png" alt="Exam" class="w-4 h-4 object-contain">
+          <span class="text-sm font-semibold text-gray-900">Exam</span>
+        </div>
+      </div>
+
+      <h1 class="text-3xl font-bold text-center">{{ examTitle }}</h1>
+    </div>
+
+    <!-- Details Cards Container -->
+    <div class="bg-white rounded-3xl p-8 mb-8 border-8 border-gray-200">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Left Column -->
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-sm font-medium mb-1" style="color: #727688;">Start Date</h3>
+            <p class="font-semibold" style="color: #131517;">{{ startDate }}</p>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-medium mb-1" style="color: #727688;">Publish Date</h3>
+            <p class="font-semibold" style="color: #131517;">{{ publishDate }}</p>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-medium mb-1" style="color: #727688;">Status</h3>
+            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium text-white" style="background-color: #FF7C59;">
+              {{ status }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-sm font-medium mb-1" style="color: #727688;">Due Date</h3>
+            <p class="font-semibold" style="color: #131517;">{{ dueDate }}</p>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-medium mb-1" style="color: #727688;">Duration</h3>
+            <p class="font-semibold" style="color: #131517;">{{ duration }}</p>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-medium mb-1" style="color: #727688;">Submission (%)</h3>
+            <p class="text-red-600 font-semibold">{{ submissionPercentage }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <div class="mt-8">
+        <h3 class="text-sm font-medium mb-1" style="color: #727688;">Description</h3>
+        <p class="leading-relaxed" style="color: #131517;">
+          {{ description }}
+        </p>
+      </div>
+    </div>
+
+    <!-- View Draft Button -->
+    <div class="flex justify-end">
+      <button type="button" (click)="onViewDraft()" class="bg-primary hover:bg-primary-hover text-gray-900 font-bold py-3 px-8 rounded-2xl shadow-lg transition-colors">
+        View draft
+      </button>
+    </div>
+  </div>
+</div>

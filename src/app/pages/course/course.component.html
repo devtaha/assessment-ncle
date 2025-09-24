@@ -1,0 +1,48 @@
+<app-main-header title="Course Details" [breadcrumbs]="[
+    { label: 'Courses', route: ['/course'] },
+    { label: 'Course Details' }
+  ]"></app-main-header>
+
+<div class="max-w-7xl mx-auto px-6 py-6">
+  <app-course-summary-card title="Chemistry" status="Completed" iconUrl="assets/icons/chemistry.png"
+    [progressPercent]="90" [todoPendingCount]="0" [todoMissedCount]="0"></app-course-summary-card>
+
+  <app-course-summary-details [authors]="['ahmed Al-Farouq', 'Talha Munir']" levelLabel="Level 1"
+    classLabel="Class 02"></app-course-summary-details>
+
+  <div class="mt-10">
+    <app-all-topics [termLabel]="termLabel" [items]="allTopicsItems"></app-all-topics>
+  </div>
+
+  <div class="mt-10">
+  <app-week-banner [weekNumber]="currentWeek" [startDate]="startDate" [endDate]="endDate"
+      (prev)="onPrevWeek()" (next)="onNextWeek()"></app-week-banner>
+  </div>
+
+  <app-details-section class="mt-6" [title]="detailsTitle" [description]="detailsDescription">
+  </app-details-section>
+
+  <app-work-items-section class="mt-6" [(activeTab)]="workActiveTab" [todoCount]="todoCount" (add)="onAddClicked()"
+    [weekStart]="startDate" [weekEnd]="endDate">
+  </app-work-items-section>
+</div>
+
+<!-- Select Type Modal -->
+<app-modal [open]="isSelectTypeOpen" title="Select Type" (close)="onCloseModal()">
+  <button type="button"
+    class="w-full rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary"
+    (click)="onChooseOnlineExam()">
+    <div class="flex items-center gap-4 p-5">
+      <img src="assets/icons/online-exam-icon.png" alt="Online exam" class="h-7 w-7" />
+      <div class="text-left">
+        <div class="text-lg font-medium text-gray-900">Online exam</div>
+      </div>
+    </div>
+  </button>
+</app-modal>
+
+<!-- Create Exam Modal -->
+<app-modal [open]="isCreateExamOpen" title="Create exam" (close)="onCloseCreateExam()">
+  <app-create-exam-form #createExamForm (submitForm)="onCloseCreateExam()"></app-create-exam-form>
+
+</app-modal>

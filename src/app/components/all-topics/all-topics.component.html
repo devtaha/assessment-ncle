@@ -1,0 +1,12 @@
+<section class="mt-2">
+  <div class="mb-3">
+    <h3 class="text-base font-semibold text-gray-900">All topics</h3>
+    <div class="flex items-center gap-1 text-[11px] text-gray-500 mt-0.5">
+      <span>{{ termLabel }}</span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <app-all-topics-item *ngFor="let item of items; trackBy: trackByTitle" [item]="item"></app-all-topics-item>
+  </div>
+</section>

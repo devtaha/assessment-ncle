@@ -1,0 +1,25 @@
+<div class="w-full bg-white border-b border-gray-200">
+  <div class="w-full px-6 py-4 flex items-start justify-between">
+    <div class="flex-1">
+      <h1 class="text-xl font-semibold text-gray-900">{{ title }}</h1>
+
+      <nav class="mt-1 text-sm flex items-center gap-2" aria-label="Breadcrumb" *ngIf="breadcrumbs?.length">
+        <ng-container *ngFor="let crumb of breadcrumbs; let last = last; trackBy: trackByLabel">
+          <a *ngIf="!last && crumb.route" [routerLink]="crumb.route" class="text-[#926F01]">{{ crumb.label }}</a>
+          <span *ngIf="!last && !crumb.route" class="text-[#926F01]">{{ crumb.label }}</span>
+          <span *ngIf="!last" class="text-gray-400">/</span>
+          <span *ngIf="last" class="text-gray-500">{{ crumb.label }}</span>
+        </ng-container>
+      </nav>
+
+      <p class="text-gray-600 mt-2" *ngIf="subtitle">{{ subtitle }}</p>
+    </div>
+
+    <!-- Right side content slot -->
+    <div class="flex-shrink-0 ml-4">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
+
+

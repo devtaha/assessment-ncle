@@ -1,0 +1,16 @@
+<div class="rounded-[30px] border-2 border-[#1315170A] bg-yellow-50/60 px-2.5 py-1.5 md:px-4 md:py-2 flex items-center justify-between gap-2">
+  <button type="button" aria-label="Previous week" class="p-1.5 md:p-2 text-gray-700" (click)="prev.emit()">
+    <span class="inline-block rotate-180 text-base md:text-lg">❯</span>
+  </button>
+  <div class="flex-1 mx-1 md:mx-2">
+    <div class="bg-[#FED143] rounded-[30px] text-center px-3 py-2 md:px-4 md:py-3">
+      <span class="text-sm font-extrabold text-gray-900 leading-5">Week {{ weekNumber }}</span>
+      <span class="text-sm text-gray-900 leading-5"> ({{ dateRangeText }})</span>
+    </div>
+  </div>
+  <button type="button" aria-label="Next week" class="p-1.5 md:p-2 text-gray-700" (click)="next.emit()">
+    <span class="inline-block text-base md:text-lg">❯</span>
+  </button>
+</div>
+
+
